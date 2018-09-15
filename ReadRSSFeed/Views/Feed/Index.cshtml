@@ -1,0 +1,174 @@
+﻿@model List<DAL.Entities.Subscription>
+@{
+    ViewBag.Title = "Feeds";
+}
+<br />
+<h2>RSS Feeds</h2>
+<hr />
+<br />
+
+<div class="row">
+   
+    <div class="col-md-3">
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Feeds</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    <tr>
+                        <td><a class="showAll" data-id="" href="">Show All</a></td>
+                    </tr>
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a class="feed-item" data-id="@item.Id" href="">@item.DisplayName</a>
+                                <a class="remove-feed pull-right" data-id="@item.Id" href="">Unsubscribe</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-8" >
+        
+        <div class="input-group">
+            <input type="text" id="txtSearch" class="form-control" placeholder="Search Posts...." />
+            <span class="input-group-btn">
+                <button id="btnSearch" class="btn btn-default" type="button">Go!</button>
+            </span>
+        </div>
+        <div class="row top-buffer" id="RSSFeeds"></div>
+    </div>
+</div>
+@section Scripts {
+<script>
+    jQuery(function ($) {
+        //On Selecting Feed Item, All posts will get loaded
+        $('.feed-item').on("click", function (e, data) {
+            e.preventDefault();
+
+            console.log($(this).data("id"));
+            var Id = $(this).data("id");
+            var url = '/Feed/RSSFeeds';
+            $(".loader-wrapper").show();
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {
+                    id: Id
+                },
+                success: function (data) {                   
+                    $(".loader-wrapper").hide();
+                    console.log('Success');
+                    $("#RSSFeeds").html(data);                    
+                    $(this).parent().hide();
+                },
+                error: function (errorThrown) {
+                    $(".loader-wrapper").hide();
+                    console.error(errorThrown);
+                    $("#RSSFeeds").html(errorThrown);
+
+                }
+            });
+        });
+
+        //Remove Feed and All Posts
+        $('.remove-feed').on("click", function (e, data) {
+            e.preventDefault();
+            _this = this;
+            console.log($(this).data("id"));
+            var Id = $(this).data("id");
+            var url = '/Feed/RSSFeedsRemove';
+            $(".loader-wrapper").show();
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {
+                    id: Id
+                },
+                success: function (data) {
+                    $(".loader-wrapper").hide();
+                    console.log('Success');
+                    $("#RSSFeeds").html(data);
+                    debugger;
+                    $(_this).parent().hide();
+                },
+                error: function (errorThrown) {
+                    $(".loader-wrapper").hide();
+                    console.error(errorThrown);
+                    $("#RSSFeeds").html(errorThrown);
+
+                }
+            });
+        });
+        // Show All Posts From All Feeds
+        $('.showAll').on("click", function (e, data) {
+            e.preventDefault();
+
+           
+            var url = '/Feed/RSSFeedsAll';
+            $(".loader-wrapper").show();
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {
+                    
+                },
+                success: function (data) {
+                    $(".loader-wrapper").hide();
+                    console.log('Success');
+                    $("#RSSFeeds").html(data);
+                },
+                error: function (errorThrown) {
+                    $(".loader-wrapper").hide();
+                    console.error(errorThrown);
+                    $("#RSSFeeds").html(errorThrown);
+
+                }
+            });
+        });
+
+        // Search Posts based on Filter
+        $('#btnSearch').on("click", function (e, data) {
+            //e.preventDefault();
+
+            console.log($(this).data("id"));
+            
+            var search = $("#txtSearch").val();
+            var url = '/Feed/RSSFeedsSearch';
+            if (search != "") {
+                $(".loader-wrapper").show();
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    data: {
+                        filter: search                        
+                    },
+                    success: function (data) {
+                        $(".loader-wrapper").hide();
+                        console.log('Success');
+                        $("#RSSFeeds").html(data);
+                    },
+                    error: function (errorThrown) {
+                        $(".loader-wrapper").hide();
+                        console.error(errorThrown);
+                        $("#RSSFeeds").html(errorThrown);
+
+                    }
+                });
+            }
+        });
+    });
+</script>
+    }

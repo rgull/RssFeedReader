@@ -1,0 +1,42 @@
+﻿@model ReadRSSFeed.Models.SubscriptionViewModel
+@{
+    ViewBag.Title = "Subscription";
+}
+<br />
+<h2>RSS Subscription</h2>
+<hr />
+<br />
+@using (Html.BeginForm())
+{
+   
+    if (TempData["Error"] != null)
+    {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    }
+    if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.TextBoxFor(m => m.URL, new { @placeholder = "Enter RSS Feed URL Here...", @class = "form-control", @style = "min-width:100%" })
+    @Html.ValidationMessageFor(model => model.URL, "", new { @class = "text-danger" })
+    <br />
+    @Html.TextBoxFor(m => m.DisplayName, new { @placeholder = "Enter Display Name...", @class = "form-control", @style = "min-width:20%" })
+    @Html.ValidationMessageFor(model => model.DisplayName, "", new { @class = "text-danger" })
+    <br />
+    <input type="submit" class="btn btn-danger" />
+}

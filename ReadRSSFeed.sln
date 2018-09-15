@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadRSSFeed", "ReadRSSFeed\ReadRSSFeed.csproj", "{CC210CC0-60B9-4218-8CE3-255F88D45EEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{9222CCFC-E263-4ABF-8BA6-FE28A8365A3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadRssFeedUnitTest", "ReadRssFeedUnitTest\ReadRssFeedUnitTest.csproj", "{3229D661-2506-4DCE-928B-1A46770A0D94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC210CC0-60B9-4218-8CE3-255F88D45EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC210CC0-60B9-4218-8CE3-255F88D45EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC210CC0-60B9-4218-8CE3-255F88D45EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC210CC0-60B9-4218-8CE3-255F88D45EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9222CCFC-E263-4ABF-8BA6-FE28A8365A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9222CCFC-E263-4ABF-8BA6-FE28A8365A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9222CCFC-E263-4ABF-8BA6-FE28A8365A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9222CCFC-E263-4ABF-8BA6-FE28A8365A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3229D661-2506-4DCE-928B-1A46770A0D94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3229D661-2506-4DCE-928B-1A46770A0D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3229D661-2506-4DCE-928B-1A46770A0D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3229D661-2506-4DCE-928B-1A46770A0D94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
